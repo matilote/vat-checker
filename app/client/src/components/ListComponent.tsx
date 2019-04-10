@@ -1,5 +1,6 @@
 import React from "react";
-import { List } from "semantic-ui-react";
+import { Divider, Header, Icon, Table, Grid } from "semantic-ui-react";
+import { setColor } from '../utils/setColor'
 
 interface VatDataProps {
   result: {
@@ -12,49 +13,38 @@ interface VatDataProps {
 }
 
 const ListComponent = ({ result }: VatDataProps): JSX.Element => (
-  <div>
-    <h2>Your current search: </h2>
-    <List>
-      <List.Item>
-        <List.Header>
-          <h3>Country Code:</h3>
-        </List.Header>
-        {result.countryCode}
-      </List.Item>
-      <List.Item>
-        <List.Header>
-          <h3>Vat Number:</h3>
-        </List.Header>
-        {result.vatNumber}
-      </List.Item>
-      <List.Item>
-        <List.Header>
-          <h3>Valid:</h3>
-        </List.Header>
-        {setColor({ result })}
-      </List.Item>
-      <List.Item>
-        <List.Header>
-          <h3>Name:</h3>
-        </List.Header>
-        {result.name}
-      </List.Item>
-      <List.Item>
-        <List.Header>
-          <h3>Address:</h3>
-        </List.Header>
-        {result.address}
-      </List.Item>
-    </List>
-  </div>
+  <React.Fragment>
+    <Divider horizontal>
+      <Header as="h4">
+        <Icon name="search plus" />
+        Your current search
+      </Header>
+    </Divider>
+    <Table definition size="large">
+      <Table.Body>
+        <Table.Row>
+          <Table.Cell width={2}>Country Code:</Table.Cell>
+          <Table.Cell>{result.countryCode}</Table.Cell>
+        </Table.Row>
+        <Table.Row>
+          <Table.Cell>Vat Number:</Table.Cell>
+          <Table.Cell>{result.vatNumber}</Table.Cell>
+        </Table.Row>
+        <Table.Row>
+          <Table.Cell>Valid:</Table.Cell>
+          <Table.Cell>{setColor(result.valid)}</Table.Cell>
+        </Table.Row>
+        <Table.Row>
+          <Table.Cell>Name:</Table.Cell>
+          <Table.Cell>{result.name}</Table.Cell>
+        </Table.Row>
+        <Table.Row>
+          <Table.Cell>Address:</Table.Cell>
+          <Table.Cell>{result.address}</Table.Cell>
+        </Table.Row>
+      </Table.Body>
+    </Table>
+  </React.Fragment>
 );
-
-const setColor = ({ result }: VatDataProps) => {
-  if (result.valid) {
-    return <span style={{ color: "green" }}>{result.valid.toString()}</span>;
-  } else {
-    return <span style={{ color: "red" }}>{result.valid.toString()}</span>;
-  }
-};
 
 export default ListComponent;

@@ -9,14 +9,10 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 app.get("/api/hello", (req, res) => {
-  if (err) {
-    res.error({ code: 400, msg: "invalid request" });
-  } else {
     res.send({
       express:
         "Welcome in React/Express application to verify if the given NIP owner is in fact a VAT payer!"
     });
-  }
 });
 
 app.get("/api/check/*", api.check);

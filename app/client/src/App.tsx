@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Button, Input } from "semantic-ui-react";
+import { Button, Input, Header, Grid, Icon } from "semantic-ui-react";
 import "./App.css";
 import LoadingSpinner from "./components/LoadingSpinner";
 import ListComponent from "./components/ListComponent";
@@ -56,33 +56,40 @@ class App extends Component<any, IApplicationState> {
   render(): JSX.Element {
     const { responseToPost, loading } = this.state;
     return (
-      <div className="App">
-        <h2>{this.state.response}</h2>
-        <form onSubmit={this.handleSubmit}>
-          <Input
-            action={
-              <Button type="submit" onClick={this.onClick}>
-                Fetch data
-              </Button>
-            }
-            type="text"
-            value={this.state.post}
-            onChange={e => this.setState({ post: e.target.value })}
-            placeholder={"Input VAT number here..."}
-            icon={"search"}
-            iconPosition={"left"}
-          />
-        </form>
-        <br />
-        {loading ? (
-          <LoadingSpinner />
-        ) : (
-          <div>
-            <ListComponent result={responseToPost.result} />
-            <PreviousChecks getData={this.getData()} />
+      <Grid centered>
+        <Grid.Column width={10}>
+          <div className="App">
+            <Header as="h2" icon textAlign="center">
+              <Icon name="handshake" circular />
+              <Header.Content>{this.state.response}</Header.Content>
+            </Header>
+            <form onSubmit={this.handleSubmit}>
+              <Input
+                action={
+                  <Button type="submit" onClick={this.onClick}>
+                    Fetch data
+                  </Button>
+                }
+                type="text"
+                value={this.state.post}
+                onChange={e => this.setState({ post: e.target.value })}
+                placeholder={"Input VAT number here..."}
+                icon={"search"}
+                iconPosition={"left"}
+              />
+            </form>
+            <br />
+            {loading ? (
+              <LoadingSpinner />
+            ) : (
+              <div>
+                <ListComponent result={responseToPost.result} />
+                <PreviousChecks getData={this.getData()} />
+              </div>
+            )}
           </div>
-        )}
-      </div>
+        </Grid.Column>
+      </Grid>
     );
   }
 
