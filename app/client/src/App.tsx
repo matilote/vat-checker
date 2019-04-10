@@ -3,6 +3,7 @@ import { Button, Input } from "semantic-ui-react";
 import "./App.css";
 import LoadingSpinner from "./components/LoadingSpinner";
 import ListComponent from "./components/ListComponent";
+import PreviousChecks from "./components/PreviousChecks";
 
 interface IApplicationState {
   response: string;
@@ -44,7 +45,7 @@ class App extends Component<any, IApplicationState> {
   }
 
   private callApi = async () => {
-    const response: Response = await fetch('/api/hello');
+    const response: Response = await fetch("/api/hello");
     const body: any = await response.json();
 
     if (response.status !== 200) throw Error(body.message);
@@ -76,11 +77,27 @@ class App extends Component<any, IApplicationState> {
         {loading ? (
           <LoadingSpinner />
         ) : (
-          <ListComponent result={responseToPost.result} />
+          <div>
+            <ListComponent result={responseToPost.result} />
+            <PreviousChecks getData={this.getData()} />
+          </div>
         )}
       </div>
     );
   }
+
+  private getData = (): any[] => {
+    const retrievedObject: any = localStorage.getItem("vatData");
+    const parsedObject = JSON.parse(retrievedObject);
+    let arr: any[] = [];
+    if (retrievedObject !== null) {
+      for (let key in parsedObject.result) {
+        let value = parsedObject.result[key];
+        arr.push(value);
+      }
+    }
+    return arr;
+  };
 
   private handleSubmit = async (e: any) => {
     e.preventDefault();
@@ -92,6 +109,7 @@ class App extends Component<any, IApplicationState> {
       responseToPost: obj,
       loading: false
     });
+    localStorage.setItem("vatData", JSON.stringify(this.state.responseToPost));
   };
 
   private onClick = (): void => {

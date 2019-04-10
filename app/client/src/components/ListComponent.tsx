@@ -3,37 +3,50 @@ import { List } from "semantic-ui-react";
 
 interface VatDataProps {
   result: {
-    countryCode: string,
-    vatNumber: string,
-    valid: string,
-    name: string,
-    address: string
-  }
+    countryCode: string;
+    vatNumber: string;
+    valid: string;
+    name: string;
+    address: string;
+  };
 }
 
 const ListComponent = ({ result }: VatDataProps): JSX.Element => (
-  <List>
-    <List.Item>
-      <List.Header><h3>Country Code:</h3></List.Header>
-      {result.countryCode}
-    </List.Item>
-    <List.Item>
-      <List.Header><h3>Vat Number:</h3></List.Header>
-      {result.vatNumber}
-    </List.Item>
-    <List.Item>
-      <List.Header><h3>Valid:</h3></List.Header>
-      {setColor({result})}
-    </List.Item>
-    <List.Item>
-      <List.Header><h3>Name:</h3></List.Header>
-      {result.name}
-    </List.Item>
-    <List.Item>
-      <List.Header><h3>Address:</h3></List.Header>
-      {result.address}
-    </List.Item>
-  </List>
+  <div>
+    <h2>Your current search: </h2>
+    <List>
+      <List.Item>
+        <List.Header>
+          <h3>Country Code:</h3>
+        </List.Header>
+        {result.countryCode}
+      </List.Item>
+      <List.Item>
+        <List.Header>
+          <h3>Vat Number:</h3>
+        </List.Header>
+        {result.vatNumber}
+      </List.Item>
+      <List.Item>
+        <List.Header>
+          <h3>Valid:</h3>
+        </List.Header>
+        {setColor({ result })}
+      </List.Item>
+      <List.Item>
+        <List.Header>
+          <h3>Name:</h3>
+        </List.Header>
+        {result.name}
+      </List.Item>
+      <List.Item>
+        <List.Header>
+          <h3>Address:</h3>
+        </List.Header>
+        {result.address}
+      </List.Item>
+    </List>
+  </div>
 );
 
 const setColor = ({ result }: VatDataProps) => {
