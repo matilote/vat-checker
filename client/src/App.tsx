@@ -1,9 +1,56 @@
-import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from "react";
+import logo from "./logo.svg";
+import "./App.css";
 
-class App extends Component {
-  render() {
+interface IApplicationState {
+  response: string;
+  post: string;
+  loading: boolean;
+  responseToPost: {
+    result: {
+      countryCode: string;
+      vatNumber: string;
+      valid: string;
+      name: string;
+      address: string;
+    };
+  };
+}
+class App extends Component<{}, IApplicationState> {
+  constructor(props: any) {
+    super(props);
+    this.state = {
+      response: "",
+      post: "",
+      loading: false,
+      responseToPost: {
+        result: {
+          countryCode: "",
+          vatNumber: "",
+          valid: "",
+          name: "",
+          address: ""
+        }
+      }
+    };
+  }
+
+  public componentDidMount() {
+    this.callApi()
+      .then(res => this.setState({ response: res.express }))
+      .catch(err => console.log(err));
+  }
+
+  private callApi = async () => {
+    const response = await fetch("/api/hello");
+    const body = await response.json();
+
+    if (response.status !== 200) throw Error(body.message);
+
+    return body;
+  };
+
+  render(): JSX.Element {
     return (
       <div className="App">
         <header className="App-header">
