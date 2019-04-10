@@ -1,0 +1,26 @@
+{
+  "name": "vat-checker",
+  "version": "1.0.0",
+  "description": "Typescript app with a Node Express Backend",
+  "license": "MIT",
+  "scripts": {
+    "client": "cd client && npm run start",
+    "server": "nodemon server.js",
+    "dev": "concurrently --kill-others-on-fail \"npm run server\" \"npm run client\"",
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "express": "^4.16.4",
+    "soap": "^0.26.0",
+    "typescript": "^3.3.4000"
+  },
+  "devDependencies": {
+    "concurrently": "^4.1.0"
+  },
+  "keywords": [
+    "node",
+    "express",
+    "create-react-app"
+  ]
+}
