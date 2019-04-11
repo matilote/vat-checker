@@ -32,7 +32,7 @@ const ListComponent = ({ result }: VatDataProps): JSX.Element => (
         </Table.Row>
         <Table.Row>
           <Table.Cell>Valid:</Table.Cell>
-          <Table.Cell>{setColor(result.valid)}</Table.Cell>
+          <Table.Cell>{setColor(result.valid.toString())}</Table.Cell>
         </Table.Row>
         <Table.Row>
           <Table.Cell>Name:</Table.Cell>

@@ -4,6 +4,7 @@ import "./App.css";
 import LoadingSpinner from "./components/LoadingSpinner";
 import ListComponent from "./components/ListComponent";
 import PreviousChecks from "./components/PreviousChecks";
+import toastr from 'toastr'
 
 interface IApplicationState {
   response: string;
@@ -117,6 +118,12 @@ class App extends Component<any, IApplicationState> {
       loading: false
     });
     localStorage.setItem("vatData", JSON.stringify(this.state.responseToPost));
+    toastr.options = {
+      positionClass : 'toast-bottom-right',
+      hideDuration: 200,
+      timeOut: 3000
+    }
+    toastr.success('Good job!','Form has been sucessfully submitted.').css("width","500px")
   };
 
   private onClick = (): void => {
