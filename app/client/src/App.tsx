@@ -74,7 +74,7 @@ class App extends Component<any, IApplicationState> {
                 type="text"
                 value={this.state.post}
                 onChange={e => this.setState({ post: e.target.value })}
-                placeholder={"Input VAT number here..."}
+                placeholder={"Input VAT number here"}
                 icon={"search"}
                 iconPosition={"left"}
               />
