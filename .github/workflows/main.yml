@@ -17,3 +17,6 @@ jobs:
         ls -l
         echo Add other actions to build,
         echo test, and deploy your project.
+    - uses: srt32/git-actions@v0.0.3
+      with:
+        args: 'git status'
