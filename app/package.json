@@ -12,7 +12,7 @@
   "dependencies": {
     "@types/toastr": "^2.1.37",
     "body-parser": "^1.18.3",
-    "express": "^4.16.4",
+    "express": "^4.17.3",
     "soap": "^0.26.0",
     "toastr": "^2.1.4",
     "typescript": "^3.3.4000"
